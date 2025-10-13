@@ -1,0 +1,3 @@
+# .pre-commit-ci.yaml
+autofix: true              # Automatically fix issues and push changes
+autoupdate_schedule: monthly
