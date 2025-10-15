@@ -66,3 +66,22 @@ def test_model_predictions_consistency(model):
 
     # Check that all predictions are the same
     assert all(p == predictions[0] for p in predictions), "Predictions for the same input should be consistent"
+
+# Test predicting corrupted image
+def test_edge_case_upload_corrupted_file(client):
+    img_path = "test_images/5/corrupt.jpeg"  
+    processed_img = preprocess_img(img_path)
+
+    # Make a prediction
+    prediction = predict_result(processed_img)
+
+    assert isinstance(prediction, (int, np.integer))
+
+def test_predict_not_hannd(client):
+    img_path = "test_images/nothand.jpeg"  
+    processed_img = preprocess_img(img_path)
+
+    prediction = predict_result(processed_img)
+
+    # Should be a number
+    assert isinstance(prediction, (int, np.integer))
