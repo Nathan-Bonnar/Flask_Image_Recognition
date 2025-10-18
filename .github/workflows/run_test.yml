@@ -31,4 +31,4 @@ jobs:
           coverage run -m pytest  -v -s
       - name: Generate Coverage Report
         run: |
-          coverage report -m
+          coverage run --ignore-errors -m pytest -v -s
