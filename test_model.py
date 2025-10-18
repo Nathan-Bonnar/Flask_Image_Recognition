@@ -1,4 +1,5 @@
-import os
+"""Unit tests for digit recognition model functions."""
+
 import pytest
 import numpy as np
 from keras.models import load_model
@@ -69,7 +70,7 @@ def test_model_predictions_consistency(model):
 
 # Test predicting corrupted image
 def test_edge_case_upload_corrupted_file(client):
-    img_path = "test_images/5/corrupt.jpeg"  
+    img_path = "test_images/5/corrupt.jpeg"
     processed_img = preprocess_img(img_path)
 
     # Make a prediction
@@ -78,7 +79,7 @@ def test_edge_case_upload_corrupted_file(client):
     assert isinstance(prediction, (int, np.integer))
 
 def test_predict_not_hannd(client):
-    img_path = "test_images/nothand.jpeg"  
+    img_path = "test_images/nothand.jpeg"
     processed_img = preprocess_img(img_path)
 
     prediction = predict_result(processed_img)
