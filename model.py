@@ -25,12 +25,17 @@ def preprocess_img(img_path):
 
     Returns:
         np.ndarray: Preprocessed image array ready for prediction.
+        If array (image) cannot be read, return error
     """
-    op_img = Image.open(img_path)
-    img_resize = op_img.resize((224, 224))
-    img2arr = img_to_array(img_resize) / 255.0
-    img_reshape = img2arr.reshape(1, 224, 224, 3)
-    return img_reshape
+    try:
+        op_img = Image.open(img_path)
+        img_resize = op_img.resize((224, 224))
+        img2arr = img_to_array(img_resize) / 255.0
+        img_reshape = img2arr.reshape(1, 224, 224, 3)
+        return img_reshape
+    except (OSError, UnidentifiedImageError):
+        print(f"Warning: Could not read image {img_path}")
+        raise OSError(f"Corrupted or unreadable image: {img_path}")
 
 
 # Predicting function
