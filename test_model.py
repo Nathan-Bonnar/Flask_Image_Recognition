@@ -71,14 +71,10 @@ def test_model_predictions_consistency(model):
 # Test predicting corrupted image
 def test_edge_case_upload_corrupted_file(client):
     img_path = "test_images/5/corrupt.jpeg"
-
     #This is expected to be caught as we know the image is broken
     with pytest.raises(OSError):
-        processed_img = preprocess_img(img_path)
+       preprocess_img(img_path)
     # Make a prediction
-    prediction = predict_result(processed_img)
-
-    assert isinstance(prediction, (int, np.integer))
 
 def test_predict_not_hannd(client):
     img_path = "test_images/nothand.jpeg"

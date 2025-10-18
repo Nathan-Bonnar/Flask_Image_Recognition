@@ -1,9 +1,10 @@
 """Model loading and image prediction utilities for digit classification using Keras."""
 # Importing required libs
+import os
 from keras.models import load_model
 from keras.utils import img_to_array
 import numpy as np
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 
 # Loading model
 model = load_model("digit_model.h5")
@@ -27,8 +28,13 @@ def preprocess_img(img_path):
         np.ndarray: Preprocessed image array ready for prediction.
         If array (image) cannot be read, return error
     """
+    if not os.path.exists(img_path):
+        raise FileNotFoundError(f"Image file not found: {img_path}")
+
+
     try:
         op_img = Image.open(img_path)
+
         img_resize = op_img.resize((224, 224))
         img2arr = img_to_array(img_resize) / 255.0
         img_reshape = img2arr.reshape(1, 224, 224, 3)
