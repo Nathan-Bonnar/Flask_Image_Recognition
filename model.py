@@ -1,6 +1,5 @@
 """Model loading and image prediction utilities for digit classification using Keras."""
 # Importing required libs
-import os
 from keras.models import load_model
 from keras.utils import img_to_array
 import numpy as np

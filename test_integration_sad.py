@@ -1,5 +1,4 @@
-# test_integration_sad.py
-
+"""Integration tests for the image prediction API."""
 import pytest
 from app import app
 from io import BytesIO

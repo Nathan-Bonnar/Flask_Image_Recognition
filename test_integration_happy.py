@@ -1,5 +1,4 @@
-# test_integration_happy.py
-
+"""Integration tests for the image prediction API."""
 from io import BytesIO
 import pytest
 
